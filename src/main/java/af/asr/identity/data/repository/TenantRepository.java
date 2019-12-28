@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TenantRepository extends JpaRepository<Tenant, Long>, RevisionRepository<Tenant, Long, Long> {
+    Tenant findByName(String name);
 }
