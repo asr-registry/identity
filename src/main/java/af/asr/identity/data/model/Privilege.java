@@ -3,6 +3,8 @@ package af.asr.identity.data.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,6 +19,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "privileges")
 @Builder
+@Audited
 public class Privilege {
 
     @Id
@@ -30,6 +33,7 @@ public class Privilege {
 
     @ManyToMany(mappedBy = "privileges")
     @JsonIgnore
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     private Collection<Role> roles;
 
 }
