@@ -40,4 +40,8 @@ public class Group {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     @JsonIgnore
     private Collection<Role> roles;
+
+    @ManyToMany(mappedBy = "users")
+    @JsonIgnore
+    private Collection<User> users;
 }

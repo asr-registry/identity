@@ -70,6 +70,9 @@ public class User {
     @JsonIgnore
     private Collection<Group> groups = new HashSet<>();
 
+    @NotNull(message = "Tenant Can't be null")
+    @Column
+    private Tenant tenant;
 
 
 }
