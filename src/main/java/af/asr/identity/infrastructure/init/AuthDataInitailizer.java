@@ -10,7 +10,6 @@ import af.asr.identity.service.GroupService;
 import af.asr.identity.service.PrivilegeService;
 import af.asr.identity.service.RoleService;
 import af.asr.identity.service.UserService;
-import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;

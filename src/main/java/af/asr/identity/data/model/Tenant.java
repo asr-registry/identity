@@ -10,7 +10,6 @@ import org.hibernate.envers.RelationTargetAuditMode;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
-import java.util.HashSet;
 
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
