@@ -248,8 +248,6 @@ public class AuthDataInitailizer {
     private Map<String, List<Group>> createGroupsIfNotExist()
     {
 
-
-
         Map<String, List<Role>> roles = createRolesIfNotExist();
         List<Role> adminroles = roles.get("userRoles");
 
