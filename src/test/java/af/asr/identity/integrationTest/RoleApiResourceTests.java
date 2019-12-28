@@ -32,7 +32,7 @@ public class RoleApiResourceTests {
     @WithMockUser("ADMIN")
     @Test
     public void testCreateRetrieveWithMockMVC() throws Exception {
-        this.mockMvc.perform(get("/api/privileges")).andExpect(status().is2xxSuccessful());
-        this.mockMvc.perform(get("//api/privileges")).andDo(print()).andExpect(status().isOk());
+        this.mockMvc.perform(get("/api/roles")).andExpect(status().is2xxSuccessful());
+        this.mockMvc.perform(get("/api/roles")).andDo(print()).andExpect(status().isOk());
     }
 }
