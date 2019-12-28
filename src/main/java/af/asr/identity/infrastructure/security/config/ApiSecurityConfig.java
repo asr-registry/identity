@@ -80,48 +80,6 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    @Configuration
-    @Order(2)
-    public static class DigestAuthSecurityConfigurationODKX extends WebSecurityConfigurerAdapter {
-
-        @Autowired
-        private CustomDigestUserService customDigestUserService;
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.cors().and().csrf().disable();
-            http.antMatcher("/odkx/**").authorizeRequests().antMatchers("/odkx/**").fullyAuthenticated().and()
-                    // .anonymous().disable()
-                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                    .addFilter(digestAuthFilterODKX())
-                    // .addFilterAfter(digestAuthFilter(), BasicAuthenticationFilter.class)
-                    .exceptionHandling().authenticationEntryPoint(digestEntryPointODKX());
-        }
-
-        DigestAuthenticationFilter digestAuthFilterODKX() throws Exception {
-            DigestAuthenticationFilter digestAuthenticationFilter = new DigestAuthenticationFilter();
-
-            digestAuthenticationFilter.setUserDetailsService(customDigestUserService);
-            digestAuthenticationFilter.setAuthenticationEntryPoint(digestEntryPointODKX());
-            digestAuthenticationFilter.setPasswordAlreadyEncoded(false);
-            digestAuthenticationFilter.setCreateAuthenticatedToken(true);
-            return digestAuthenticationFilter;
-        }
-
-        DigestAuthenticationEntryPoint digestEntryPointODKX() {
-            DigestAuthenticationEntryPoint bauth = new DigestAuthenticationEntryPoint();
-            bauth.setRealmName("Digest ASIMS");
-            bauth.setKey("MySecureKey");
-            return bauth;
-        }
-
-        // @Override
-        // public void configure(AuthenticationManagerBuilder
-        // authenticationManagerBuilder) throws Exception {
-        // authenticationManagerBuilder.userDetailsService(customDigestUserService);
-        // }
-
-    }
 
     @Configuration
     @Order(3)
@@ -133,8 +91,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
         private JwtAuthenticationEntryPoint unauthorizedHandler;
 
         private static final String[] AUTH_WHITE_LIST = {
-                "/api/login",
-                "/authenticate",
+                "/auth/login",
         };
 
         @Override
