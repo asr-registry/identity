@@ -1,10 +1,12 @@
 package af.asr.identity.data.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,4 +26,9 @@ public class Privilege {
     private String name;
     @Column
     private String description;
+
+    @ManyToMany(mappedBy = "permissions")
+    @JsonIgnore
+    private Collection<Role> roles;
+
 }
