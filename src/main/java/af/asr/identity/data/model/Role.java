@@ -34,10 +34,9 @@ public class Role {
     @Column
     private String description;
 
-    @Column(name = "active", length = 1, nullable = false)
+    @Column(columnDefinition = "boolean default true", name = "active")
     private boolean active;
-
-    @Column(name = "is_core", length = 1, nullable = false)
+    @Column(columnDefinition = "boolean default false",name = "is_core")
     private boolean core;
 
 
