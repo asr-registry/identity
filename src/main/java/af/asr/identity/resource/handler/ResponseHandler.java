@@ -1,10 +1,10 @@
 package af.asr.identity.resource.handler;
 
-import af.asr.lang.enums.ExceptionType;
-import af.asr.lang.exception.InternalServerProblemException;
-import af.asr.lang.exception.ResourceNotFoundException;
-import af.asr.lang.util.ErrorResponseModel;
-import af.asr.lang.util.ResponseModel;
+import af.asr.identity.infrastructure.exception.identity.InternalServerProblemException;
+import af.asr.identity.infrastructure.exception.identity.ResourceNotFoundException;
+import af.asr.identity.infrastructure.util.ErrorResponseModel;
+import af.asr.identity.infrastructure.util.ResponseModel;
+import af.asr.identity.infrastructure.util.enums.ExceptionType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

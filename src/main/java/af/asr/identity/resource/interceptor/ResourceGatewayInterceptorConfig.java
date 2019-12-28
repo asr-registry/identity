@@ -1,6 +1,6 @@
 package af.asr.identity.resource.interceptor;
 
-import af.asr.lang.ParamsConfig;
+import af.asr.identity.infrastructure.util.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -17,7 +17,7 @@ public class ResourceGatewayInterceptorConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(resourceGatewayInterceptor).addPathPatterns(ParamsConfig.INTERCEPTOR_PATTERNS.split(","));
+        registry.addInterceptor(resourceGatewayInterceptor).addPathPatterns(Constants.INTERCEPTOR_PATTERNS.split(","));
     }
 
 }
