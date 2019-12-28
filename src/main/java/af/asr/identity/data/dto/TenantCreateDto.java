@@ -22,9 +22,7 @@ public class TenantCreateDto {
     @Size(max = 64, min = 3 , message = "type valid name for tenant")
     private String name;
     private String description;
-    @NotNull
     private boolean active;
-    @NotNull
     private boolean core;
     private boolean superTenant;
 
