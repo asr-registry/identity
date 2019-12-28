@@ -5,9 +5,11 @@ import af.asr.identity.data.model.Role;
 import af.asr.identity.data.repository.GroupRepository;
 import af.asr.identity.data.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class GroupService {
 
     @Autowired

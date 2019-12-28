@@ -2,7 +2,10 @@ package af.asr.identity.infrastructure.security.token;
 
 import java.io.IOException;
 
+import af.asr.identity.data.model.Tenant;
 import af.asr.identity.infrastructure.security.data.CustomUser;
+import af.asr.identity.infrastructure.security.service.CustomUserService;
+import af.asr.identity.service.TenantService;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.ExpiredJwtException;
 
@@ -31,6 +34,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private TenantService tenantService;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         logger.error("Request URL = " + request.getRequestURL());
@@ -51,15 +57,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String requestTokenHeader = request.getHeader(JwtTokenConstants.HEADER_STRING);
         String username = null;
         String authToken = null;
-        String currentEnv = null;
-        String currentLang = null;
+        String tenantName = null;
         // JWT Token is in the form "Bearer token". Remove Bearer word and get
         // only the Token
         if (requestTokenHeader != null && requestTokenHeader.startsWith(JwtTokenConstants.TOKEN_PREFIX)) {
             authToken = requestTokenHeader.substring(7);
             try {
                 username = jwtTokenUtil.getUsernameFromToken(authToken);
-                currentEnv = jwtTokenUtil.getTokenTenantFromToken(authToken);
+                tenantName = jwtTokenUtil.getTokenTenantFromToken(authToken);
             } catch (IllegalArgumentException e) {
                 logger.error("an error occured during getting username from token", e);
             } catch (ExpiredJwtException e) {
@@ -73,14 +78,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         // Once we get the token validate it.
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            if(currentEnv == "null" || currentEnv == "") {
-                currentEnv = null;
-            }
-            if(currentLang == "null" || currentLang == "") {
-                currentLang = null;
-            }
 
-            CustomUser userDetails = customUserService.loadUserByUsername(username, currentEnv, currentLang);
+            Tenant tenant = tenantService.findByTenantName(tenantName);
+
+            if(tenantName == "null" || tenantName == "") {
+                tenantName = null;
+            }
+            CustomUser userDetails = customUserService.loadUserByUsername(username, tenant.getId() );
 
             // if token is valid configure Spring Security to manually set
             // authentication
