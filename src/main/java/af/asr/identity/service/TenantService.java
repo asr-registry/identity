@@ -34,7 +34,11 @@ public class TenantService {
 
     public boolean delete(Long id)
     {
-        if (id == null || id < 1) return false;
+        Tenant tenant = findById(id);
+        if (id == null || id < 1 || tenant.isCore()) {
+            return false;
+        }
+
         tenantRepository.deleteById(id);
         return true;
     }
