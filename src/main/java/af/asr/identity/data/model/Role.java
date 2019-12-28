@@ -1,8 +1,12 @@
 package af.asr.identity.data.model;
 
 
+import af.asr.identity.infrastructure.util.DatasourceSchema;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,6 +20,9 @@ import java.util.Collection;
 @EqualsAndHashCode
 @Entity
 @Table(name = "roles")
+@Audited
+@AuditTable(value = "roles_audits", schema = DatasourceSchema.PUBLIC)
+@Builder
 public class Role {
 
     @Id

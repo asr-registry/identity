@@ -1,7 +1,11 @@
 package af.asr.identity.data.model;
 
+import af.asr.identity.infrastructure.util.DatasourceSchema;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,6 +21,8 @@ import java.util.Collection;
 @Entity
 @Table(name = "groups")
 @Builder
+@Audited
+@AuditTable(value = "groups_audits", schema = DatasourceSchema.PUBLIC)
 public class Group {
 
     @Id

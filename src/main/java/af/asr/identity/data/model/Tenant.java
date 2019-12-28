@@ -1,7 +1,10 @@
 package af.asr.identity.data.model;
 
+import af.asr.identity.infrastructure.util.DatasourceSchema;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,6 +19,9 @@ import java.util.HashSet;
 @EqualsAndHashCode
 @Entity
 @Table(name = "tenants")
+@Audited
+@AuditTable(value = "priviliges_audits", schema = DatasourceSchema.PUBLIC)
+@Builder
 public class Tenant {
 
     @Id

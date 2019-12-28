@@ -1,11 +1,14 @@
 package af.asr.identity.data.model;
 
+import af.asr.identity.infrastructure.util.DatasourceSchema;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.envers.AuditTable;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -23,6 +26,8 @@ import java.util.HashSet;
 @Entity
 @Table(name = "users")
 @Builder()
+@Audited
+@AuditTable(value = "priviliges_audits", schema = DatasourceSchema.PUBLIC)
 public class User {
 
     @Id
