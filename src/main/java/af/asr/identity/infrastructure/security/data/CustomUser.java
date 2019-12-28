@@ -13,13 +13,13 @@ public class CustomUser extends User {
 
     private static final long serialVersionUID = -3531439484732724601L;
 
-    private String tenant;
+    private long tenant;
 
     public CustomUser(String username, String password, boolean enabled, boolean accountNonExpired,
                       boolean credentialsNonExpired, boolean accountNonLocked,
-                      Collection<? extends GrantedAuthority> authorities, String tenant) {
+                      Collection<? extends GrantedAuthority> authorities, long tenant) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
-
+        this.tenant =tenant;
     }
 
 

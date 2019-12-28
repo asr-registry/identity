@@ -41,7 +41,7 @@ public class Role {
 
 
     @ManyToMany(fetch=FetchType.LAZY)
-    @JoinTable(name = "role_privilges",
+    @JoinTable(name = "role_privilge",
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
     @JsonIgnore

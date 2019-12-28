@@ -1,6 +1,7 @@
 package af.asr.identity.service;
 
 import af.asr.identity.data.model.Privilege;
+import af.asr.identity.data.model.User;
 import af.asr.identity.data.repository.PrivilegeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +21,10 @@ public class PrivilegeService {
     public List<Privilege> findAll()
     {
         return repository.findAll();
+    }
+
+    public List<Privilege> findAllByUserAndTenant(Long userId, Long tenantId)
+    {
+        return repository.findAllByUserAndTenant(userId, tenantId);
     }
 }
