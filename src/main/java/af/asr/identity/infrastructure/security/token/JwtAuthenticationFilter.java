@@ -1,6 +1,8 @@
-package af.asr.identity.infrastructure.security;
+package af.asr.identity.infrastructure.security.token;
 
 import java.io.IOException;
+
+import af.asr.identity.infrastructure.security.data.CustomUser;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.ExpiredJwtException;
 
@@ -14,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -58,8 +59,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             authToken = requestTokenHeader.substring(7);
             try {
                 username = jwtTokenUtil.getUsernameFromToken(authToken);
-                currentEnv = jwtTokenUtil.getcurrentEnvFromToken(authToken);
-                currentLang = jwtTokenUtil.getcurrentLangFromToken(authToken);
+                currentEnv = jwtTokenUtil.getTokenTenantFromToken(authToken);
             } catch (IllegalArgumentException e) {
                 logger.error("an error occured during getting username from token", e);
             } catch (ExpiredJwtException e) {

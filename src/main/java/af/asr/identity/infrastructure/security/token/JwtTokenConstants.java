@@ -1,4 +1,4 @@
-package af.asr.identity.infrastructure.security;
+package af.asr.identity.infrastructure.security.token;
 
 public class JwtTokenConstants {
     public static final long ACCESS_TOKEN_VALIDITY_SECONDS = 5*60*60;

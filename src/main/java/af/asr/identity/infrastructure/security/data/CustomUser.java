@@ -1,4 +1,4 @@
-package af.asr.identity.infrastructure.security;
+package af.asr.identity.infrastructure.security.data;
 
 import java.util.Collection;
 

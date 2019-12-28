@@ -1,4 +1,4 @@
-package af.asr.identity.infrastructure.security;
+package af.asr.identity.infrastructure.security.token;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
