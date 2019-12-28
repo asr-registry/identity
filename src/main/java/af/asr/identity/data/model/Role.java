@@ -8,8 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
-@AllArgsConstructor
-@NoArgsConstructor
+//@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Setter
 @Getter
 @ToString

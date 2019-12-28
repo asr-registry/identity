@@ -8,14 +8,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Setter
 @Getter
 @ToString(exclude="roles")
 @EqualsAndHashCode
 @Entity
 @Table(name = "privileges")
+@Builder
 public class Privilege {
 
     @Id

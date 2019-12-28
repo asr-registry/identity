@@ -1,12 +1,15 @@
 package af.asr.identity.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
+import java.util.HashSet;
 
-@AllArgsConstructor
-@NoArgsConstructor
+//@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Setter
 @Getter
 @ToString
@@ -27,5 +30,10 @@ public class Tenant {
     private boolean active;
     @Column(name = "is_core", length = 1, nullable = false)
     private boolean core;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "tenant_users", joinColumns = @JoinColumn(name = "tenant_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+    @JsonIgnore
+    private Collection<Group> groups = new HashSet<>();
 
 }
