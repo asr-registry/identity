@@ -1,4 +1,4 @@
-package af.asr.identity.infrastructure;
+package af.asr.identity.infrastructure.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.envers.repository.support.EnversRevisionRepositoryFactoryBean;
