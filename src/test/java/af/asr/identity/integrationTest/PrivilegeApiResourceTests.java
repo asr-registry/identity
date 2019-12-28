@@ -45,7 +45,7 @@ public class PrivilegeApiResourceTests {
 
     @WithMockUser("ADMIN")
     @Test
-    public void testCreateRetrieveWithMockMVC() throws Exception {
+    public void testApiAvailability() throws Exception {
         this.mockMvc.perform(get("/api/privileges")).andExpect(status().is2xxSuccessful());
         this.mockMvc.perform(get("//api/privileges")).andDo(print()).andExpect(status().isOk());
     }
