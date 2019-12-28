@@ -8,8 +8,8 @@ import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 
-//@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Setter
 @Getter
 @ToString
@@ -41,7 +41,7 @@ public class Group {
     @JsonIgnore
     private Collection<Role> roles;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "groups")
     @JsonIgnore
     private Collection<User> users;
 }

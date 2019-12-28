@@ -8,8 +8,8 @@ import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.HashSet;
 
-//@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Setter
 @Getter
 @ToString
@@ -31,7 +31,11 @@ public class Tenant {
     @Column(name = "is_core", length = 1, nullable = false)
     private boolean core;
 
-    @OneToMany
+    @Column(name = "is_super_tenant", length = 1, nullable = false)
+    private boolean superTenant;
+
+
+    @OneToMany()
     @JsonIgnore
     private Collection<User> users;
 

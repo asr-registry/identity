@@ -8,7 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Setter
 @Getter
 @ToString(exclude="roles")
@@ -27,7 +28,7 @@ public class Privilege {
     @Column
     private String description;
 
-    @ManyToMany(mappedBy = "permissions")
+    @ManyToMany(mappedBy = "privileges")
     @JsonIgnore
     private Collection<Role> roles;
 

@@ -12,15 +12,15 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 
-//@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Setter
 @Getter
-@ToString
-@EqualsAndHashCode
+//@ToString
+//@EqualsAndHashCode
 @Entity
 @Table(name = "users")
-@Builder
+@Builder()
 public class User {
 
     @Id
@@ -70,9 +70,9 @@ public class User {
     @JsonIgnore
     private Collection<Group> groups = new HashSet<>();
 
-    @NotNull(message = "Tenant Can't be null")
-    @Column
-    private Tenant tenant;
+//    @NotNull(message = "Tenant Can't be null")
+//    @Column
+//    private Tenant tenant;
 
 
 }
