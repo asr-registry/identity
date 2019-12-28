@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/auth")
+@RequestMapping(value = "/api")
 @Slf4j
 public class AuthApiResource extends ResponseHandler {
 

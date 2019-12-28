@@ -91,7 +91,7 @@ public class ApiSecurityConfig extends WebSecurityConfigurerAdapter {
         private JwtAuthenticationEntryPoint unauthorizedHandler;
 
         private static final String[] AUTH_WHITE_LIST = {
-                "/auth/login",
+                "/api/login",
         };
 
         @Override
