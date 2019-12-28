@@ -35,7 +35,7 @@ public class Tenant {
     private boolean superTenant;
 
 
-    @OneToMany()
+    @OneToMany
     @JsonIgnore
     private Collection<User> users;
 

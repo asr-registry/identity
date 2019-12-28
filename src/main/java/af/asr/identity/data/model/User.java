@@ -3,6 +3,8 @@ package af.asr.identity.data.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -70,9 +72,10 @@ public class User {
     @JsonIgnore
     private Collection<Group> groups = new HashSet<>();
 
-//    @NotNull(message = "Tenant Can't be null")
-//    @Column
-//    private Tenant tenant;
-
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "tenant_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JsonIgnore
+    private Tenant tenant;
 
 }

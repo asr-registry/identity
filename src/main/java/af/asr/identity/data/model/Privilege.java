@@ -1,8 +1,10 @@
 package af.asr.identity.data.model;
 
 
+import af.asr.identity.infrastructure.util.DatasourceSchema;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
 
@@ -20,6 +22,7 @@ import java.util.Collection;
 @Table(name = "privileges")
 @Builder
 @Audited
+@AuditTable(value = "priviliges_audits", schema = DatasourceSchema.PUBLIC)
 public class Privilege {
 
     @Id
