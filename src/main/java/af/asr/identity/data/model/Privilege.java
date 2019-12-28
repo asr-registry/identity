@@ -38,4 +38,7 @@ public class Privilege {
     @JsonIgnore
     private Collection<Role> roles;
 
+    public Privilege(String name) {
+        this.name = name;
+    }
 }
