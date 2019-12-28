@@ -36,6 +36,7 @@ public class Privilege {
 
     @ManyToMany(mappedBy = "privileges")
     @JsonIgnore
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     private Collection<Role> roles;
 
     public Privilege(String name) {

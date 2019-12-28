@@ -46,9 +46,11 @@ public class Group {
             joinColumns = @JoinColumn( name = "group_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     @JsonIgnore
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     private Collection<Role> roles;
 
     @ManyToMany(mappedBy = "groups")
     @JsonIgnore
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     private Collection<User> users;
 }

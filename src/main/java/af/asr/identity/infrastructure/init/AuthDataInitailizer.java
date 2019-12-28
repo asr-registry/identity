@@ -247,6 +247,9 @@ public class AuthDataInitailizer {
 
     private Map<String, List<Group>> createGroupsIfNotExist()
     {
+
+
+
         Map<String, List<Role>> roles = createRolesIfNotExist();
         List<Role> adminroles = roles.get("userRoles");
 
@@ -254,17 +257,18 @@ public class AuthDataInitailizer {
 
         List<Group> defaultGroups = new ArrayList<>();
 
-        Group defaul_group = Group.builder()
-                .core(true)
-                .name(Constants.DEFAILT_GROUP_NAME)
-                .description("This is the defaul group")
-                .active(true)
-                .roles(adminroles)
-                .build();
-        groupService.save(defaul_group);
+        if(roleService.findAll().size() < 1){
+            Group defaul_group = Group.builder()
+                    .core(true)
+                    .name(Constants.DEFAILT_GROUP_NAME)
+                    .description("This is the defaul group")
+                    .active(true)
+                    .roles(adminroles)
+                    .build();
+            groupService.save(defaul_group);
 
-        defaultGroups.add(defaul_group);
-
+            defaultGroups.add(defaul_group);
+        }
         groups.put("defaultGroups", defaultGroups);
 
         return groups;
